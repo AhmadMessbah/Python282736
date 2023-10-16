@@ -10,6 +10,11 @@ def activate(code):
 def deactivate(code):
     pass
 
+def find_all():
+    pass
+
+def find_by_code(code):
+    pass
 
 def find_by_name_family(name,family):
     pass
