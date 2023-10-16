@@ -1,2 +1,0 @@
-name = "ali"
-family = "alipour"
