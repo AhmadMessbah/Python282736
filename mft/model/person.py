@@ -1,1 +1,2 @@
-Print(1)
+name = "ali"
+family = "alipour"
