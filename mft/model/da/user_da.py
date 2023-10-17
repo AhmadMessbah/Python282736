@@ -23,7 +23,12 @@ def activate(code):
     pass
 
 def deactivate(code):
-    pass
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("update user_tbl set status = 0 where code = %s",[code])
+    db.commit()
+    cursor.close()
+    db.close()
 
 def find_all():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
