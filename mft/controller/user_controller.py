@@ -5,10 +5,10 @@ def valid_name(text):
     return bool (re.match("^[a-zA-Z\s]{2,30}$",text))
 
 def valid_username(text):
-    return bool (re.match("^[a-zA-Z\_\-\d]{,20}$"))
+    return bool (re.match("^[a-zA-Z\_\-\d]{,20}$",text))
 
 def valid_password(text):
-    return bool (re.match("^[a-zA-Z]{,10}[\@]?[\_]?[\-]?[\d]{,6}$"))
+    return bool (re.match("^[a-zA-Z]{,10}[\@]?[\_]?[\-]?[\d]{,6}$",text))
 
 def valid_address(text):
     return bool(re.match("^[a-zA-z0-9\s\-],[\sآ-ی]{,100}$", text))
@@ -17,7 +17,7 @@ def valid_email(text):
     pass
 
 def valid_phone(text):
-    return bool (re.match("^09[\d]{9}$"))
+    return bool (re.match("^09[\d]{9}$",text))
 
 
 
