@@ -1,5 +1,5 @@
 import mysql.connector
-def save(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score):
+def save_user(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score):
     db=mysql.connector.connect(host = "localhost",user= "root",database="mft",port=3307)
     cursor = db.cursor()
     cursor.execute("insert into user_tbl(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -9,7 +9,7 @@ def save(name,family,gender,age,username,password,email,role,state,city,address,
     db.close()
 
 
-def edit(code,name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status):
+def edit_user(code,name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
     cursor.execute(
@@ -30,7 +30,7 @@ def deactivate(code):
     cursor.close()
     db.close()
 
-def find_all():
+def find_all_user():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
     cursor.execute("select * from user_tbl where status = 1",)
@@ -90,8 +90,17 @@ def find_by_score(score):
     db.close()
     return user_list
 
-def login(username,password):
-    pass
+def login_user(username,password):
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("select * from user_tbl where username = %s and password = %s and status = 1",[username,password])
+    user = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return user
+
+
+
 
 def logout(username):
     pass

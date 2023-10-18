@@ -25,7 +25,7 @@ def save(name,family,gender,age,username,password,email,role,state,city,address,
     try:
         if (valid_name(name) and valid_name(family) and valid_username(username) and valid_password(password) and valid_address(address) and valid_name(state) and valid_name(city)
                 and valid_phone(phone) and valid_name(photo)):
-            save(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score)
+            save_user(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score)
             return True , "User Saved"
         else:
             return False , "Save Error"
@@ -35,7 +35,7 @@ def edit(name,family,gender,age,username,password,email,role,state,city,address,
     try:
         if (status == 1 and valid_name(name) and valid_name(family) and valid_username(username) and valid_password(password) and valid_address(address) and valid_name(state) and valid_name(city)
                 and valid_phone(phone) and valid_name(photo)):
-            edit(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score)
+            edit_user(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score)
             return True , "User Edited"
         else:
             return False , "Edit Error"
@@ -48,10 +48,16 @@ def deactivate(code):
     pass
 
 
-def find_by_name_family(name,family,status):
+def find_all():
     try:
-        if status == 1 and valid_name(name) and valid_name(family):
-            find_by_name_family(name,family)
+        return find_all_user()
+    except Exception as e:
+        return str(e)
+
+
+
+def find_by_name_family(name,family,status):
+    pass
 
 def find_by_username(username):
     pass
@@ -66,7 +72,17 @@ def find_by_score(code):
     pass
 
 def login(username,password):
-    pass
+    try:
+        if valid_username(username) and valid_password(password):
+            user = login_user(username,password)
+            if user:
+                return True , user
+            else:
+                return False , "Access Denied"
+        else:
+            return False , "Invalid Login Info"
+    except Exception as e:
+        return False , str(e)
 
 def logout(username):
     pass
