@@ -1,106 +1,131 @@
 import mysql.connector
-def save_user(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score):
-    db=mysql.connector.connect(host = "localhost",user= "root",database="mft",port=3307)
+# active --> status=1
+# inactive --> status=0
+
+def save_user(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,
+              score):
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("insert into user_tbl(name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                   [name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score])
+    cursor.execute(
+        "insert into user_tbl (name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+        [name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status, score])
     db.commit()
     cursor.close()
     db.close()
 
 
-def edit_user(code,name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status):
+def edit_user(code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo,
+              status):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
     cursor.execute(
         "update user_tbl set name=%s,family=%s,gender=%s,age=%s,username=%s,password=%s,email=%s,role=%s,state=%s,city=%s,address=%s,phone=%s,photo=%s,status=%s ",
-        [name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,code])
+        [name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status, code])
     db.commit()
     cursor.close()
     db.close()
 
-def activate(code):
-    pass
 
+def activate(code):
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("update user_tbl set status = 1 where code = %s", [code])
+    db.commit()
+    cursor.close()
+    db.close()
+
+
+# inactive
 def deactivate(code):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("update user_tbl set status = 0 where code = %s",[code])
+    cursor.execute("update user_tbl set status = 0 where code = %s", [code])
     db.commit()
     cursor.close()
     db.close()
+
 
 def find_all_user():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status = 1",)
+    cursor.execute("select * from user_tbl where status = 1")
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
+
 
 def find_by_code(code):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where code = %s", [code])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
-
-def find_by_name_family(name,family):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where name = %s and family = %s",[name,family])
+    cursor.execute("select * from user_tbl where status=1 order by code")
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-
-def find_by_username(username):
+def find_by_name_family():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where username = %s", [username])
+    cursor.execute("select * from user_tbl where status = order by name and family")
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-def find_by_role(role):
+def find_by_username():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where role = %s", [role])
+    cursor.execute("select * from user_tbl where status=1 order by username")
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
-def find_by_gender(gender):
-    pass
 
-def find_by_score(score):
+def find_by_role():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where score = %s", [score])
+    cursor.execute("select * from user_tbl where status=1 order by role")
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
-def login_user(username,password):
+
+def find_by_gender():
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where username = %s and password = %s and status = 1",[username,password])
+    cursor.execute("select * from user_tbl where status=1 order by gender")
+
+
+def find_by_score():
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("select * from user_tbl where score = %s order by score")
+    user_list = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return user_list
+
+
+def login_user(username, password):
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("select * from user_tbl where username = %s and password = %s and status = 1", [username, password])
     user = cursor.fetchall()
     cursor.close()
     db.close()
     return user
 
 
-
-
 def logout(username):
-    pass
+    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
+    cursor = db.cursor()
+    cursor.execute("update user_tbl set status=0 where username=%s",[username])
+    user = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return user
