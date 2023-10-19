@@ -58,53 +58,53 @@ def find_all_user():
 def find_by_code(code):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 order by code")
+    cursor.execute("select * from user_tbl where status=1 and code=%s order by code",[code])
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-def find_by_name_family():
+def find_by_name_family(name,family):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status = order by name and family")
+    cursor.execute("select * from user_tbl where status=1 and name=%s and family=%s order by family",[name,family])
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-def find_by_username():
+def find_by_username(username):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 order by username")
+    cursor.execute("select * from user_tbl where status=1 and username=%s order by username",[username])
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-def find_by_role():
+def find_by_role(role):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 order by role")
+    cursor.execute("select * from user_tbl where status=1 and role=%s order by role",[role])
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
     return user_list
 
 
-def find_by_gender():
+def find_by_gender(gender):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 order by gender")
+    cursor.execute("select * from user_tbl where status=1 and gender=%s order by gender",[gender])
 
 
-def find_by_score():
+def find_by_score(score):
     db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
     cursor = db.cursor()
-    cursor.execute("select * from user_tbl where score = %s order by score")
+    cursor.execute("select * from user_tbl where status=1 and score=%s order by score",[score])
     user_list = cursor.fetchall()
     cursor.close()
     db.close()
