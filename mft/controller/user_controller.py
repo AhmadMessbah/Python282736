@@ -78,7 +78,7 @@ def find_all():
 def find_by_name_family(name, family, status):
     try:
         if valid_name(name) and valid_name(family) and status == 1:
-            return find_by_name_family()
+            return find_by_name_family(name,family)
         else:
             return False, "Invalid Data"
     except Exception as e:
