@@ -9,6 +9,8 @@ def valid_name(text):
 def valid_age(number):
     return bool(re.match("^[\d]+$", number))
 
+def valid_score(number):
+    return bool(re.match("^[\d]{,2}"))
 
 def valid_username(text):
     return bool(re.match("^[\w\s\-\*]{1,20}$", text))
@@ -23,7 +25,7 @@ def valid_email(text):
 
 
 def valid_address(text):
-    return bool(re.match("^[a-zA-z0-9\s\-],[\sآ-ی]{,100}$", text))
+    return bool(re.match("^[a-zA-Z0-9\s\-],[\sآ-ی]{,100}$", text))
 
 
 def valid_phone(text):
@@ -76,27 +78,39 @@ def find_all():
 def find_by_name_family(name, family, status):
     try:
         if valid_name(name) and valid_name(family) and status == 1:
-            return find_by_name_family
+            return find_by_name_family()
         else:
             return False, "Invalid Data"
     except Exception as e:
         return False, str(e)
 
 
-def find_by_username(username):
+def find_by_username(username,status):
+    try:
+        if valid_username(username) and status == 1:
+            return find_by_username_user(username)
+        else:
+            return False, "Invalid Username"
+    except Exception as e:
+        return False, str(e)
+
+
+
+def find_by_role(role,status):
     pass
-
-
-def find_by_role(role):
-    pass
-
 
 def find_by_gender(gender):
     pass
 
 
-def find_by_score(code):
-    pass
+def find_by_score(score,status):
+    try:
+        if valid_score(score) and status==1 :
+            return find_by_score_user(score)
+        else:
+            return False, "Invalid Score"
+    except Exception as e:
+        return False, str(e)
 
 
 def login(username, password):
