@@ -68,6 +68,7 @@ def deactivate(code):
     pass
 
 
+
 def find_all():
     try:
         return find_all_user()
@@ -97,7 +98,13 @@ def find_by_username(username,status):
 
 
 def find_by_role(role,status):
-    pass
+    try:
+        if status == 1:
+            return find_by_role(role, status)
+        else:
+            return False, "Invalid Role"
+    except Exception as e:
+        return False, str(e)
 
 def find_by_gender(gender):
     pass
