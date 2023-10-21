@@ -106,8 +106,15 @@ def find_by_role(role,status):
     except Exception as e:
         return False, str(e)
 
-def find_by_gender(gender):
-    pass
+def find_by_gender(gender,status):
+    try:
+        if status == 1:
+            return find_by_gender(gender, status)
+        else:
+            return False, "Invalid Gender"
+    except Exception as e:
+        return False, str(e)
+
 
 
 def find_by_score(score,status):
@@ -134,5 +141,6 @@ def login(username, password):
         return False, str(e)
 
 
-def logout(username):
-    pass
+def logout():
+    if msg.askyesno("Exit", "Are You Sure ? "):
+        exit()
