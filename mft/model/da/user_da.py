@@ -1,6 +1,6 @@
 import mysql.connector
 # active --> status=1
-# inactive --> status=0
+# deactivate --> status=0
 
 def save_user(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,
               score):

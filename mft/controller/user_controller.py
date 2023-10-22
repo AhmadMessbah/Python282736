@@ -32,6 +32,7 @@ def valid_phone(text):
     return bool(re.match("^09[\d]{9}$", text))
 
 
+
 def save(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status, score):
     try:
         if (valid_name(name) and valid_name(family) and valid_username(username) and valid_password(
@@ -62,7 +63,6 @@ def edit(name, family, gender, age, username, password, email, role, state, city
 
 def activate(code):
     pass
-
 
 def deactivate(code):
     pass
@@ -97,10 +97,24 @@ def find_by_username(username,status):
 
 
 def find_by_role(role,status):
-    pass
+    try:
+        if role  and status==1:
+            return find_by_role_user(role)
+        else:
+            return False , "Invalid role"
+
+    except Exception as e:
+        return False , str(e)
 
 def find_by_gender(gender):
-    pass
+    try:
+        if gender :
+            return find_by_gender(gender)
+        else:
+            return False, "Invalid gender"
+
+    except Exception as e:
+        return False, str(e)
 
 
 def find_by_score(score,status):
@@ -128,4 +142,11 @@ def login(username, password):
 
 
 def logout(username):
-    pass
+    try:
+        if valid_username(username):
+            return logout(username)
+        else:
+            return False, "Invalid User Name"
+
+    except Exception as e:
+        return False, str(e)
