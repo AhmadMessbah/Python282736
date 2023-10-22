@@ -60,7 +60,7 @@ def edit(name, family, gender, age, username, password, email, role, state, city
     except Exception as e:
         return False, str(e)
 
-
+#todo:active and deactive
 def activate(code):
     pass
 
