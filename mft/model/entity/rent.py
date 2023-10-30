@@ -1,6 +1,5 @@
 import re
 
-
 class Rent:
     def __init__(self, code, sender, renter, stuff, rent_date, return_date, stuff_status, rent_price, information):
         self.code = code
