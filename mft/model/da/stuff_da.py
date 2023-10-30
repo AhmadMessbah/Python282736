@@ -1,6 +1,6 @@
 import mysql.connector
 
-#jgjgjh
+
 def save(name, brand, description, price, rent_condiotion, rent_price):
     db = mysql.connector.connect(host='localhost', user='root', password='@kasra0622', port=3306, database='stuff')
     cursor = db.cursor()
