@@ -8,8 +8,8 @@ create table rent_db.stuff_tbl
     description    nvarchar(255),
     price          int,
     image          nvarchar(50),
-    rent_db_condition nvarchar(255),
-    rent_db_price     int
+    rent_condition nvarchar(255),
+    rent_price     int
 );
 
 create table rent_db.user_tbl
@@ -38,10 +38,10 @@ create table rent_db.rent_tbl
     sender_code  int,
     renter_code  int,
     stuff_code   int,
-    rent_db_date    datetime,
+    rent_date    datetime,
     return_date  datetime,
     stuff_status tinyint default 1,
-    rent_db_price   int,
+    rent_price   int,
     information  nvarchar(255),
     FOREIGN KEY(sender_code) REFERENCES user_tbl(code),
     FOREIGN KEY(renter_code) REFERENCES user_tbl(code),
