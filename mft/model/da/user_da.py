@@ -3,6 +3,27 @@ import mysql.connector
 
 # active --> status=1
 # deactivate --> status=0
+class UserDa:
+    def connect(self):
+        self.connection = mysql.connector.connect(host='localhost', user='root', password='root123', port=3306,
+                                                  database='user')
+        self.cursor = self.connection.cursor()
+    def  disconnect(self, commit=False):
+        if commit:
+            self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
+
+    def execute(self, sql_command, data, commit=False):
+        self.connect()
+        if data:
+            self.cursor.execute(sql_command, data)
+        else:
+            self.cursor.execute(sql_command)
+        result = self.cursor.fetchall()
+        self.disconnect(commit=commit)
+        return result
+
 
 def save_user(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,
               score):
