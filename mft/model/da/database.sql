@@ -9,7 +9,8 @@ create table rent_db.stuff_tbl
     price          int,
     image          nvarchar(50),
     rent_condition nvarchar(255),
-    rent_price     int
+    rent_price     int,
+    deleted        tinyint default 0
 );
 
 create table rent_db.user_tbl
@@ -29,7 +30,8 @@ create table rent_db.user_tbl
     phone    nvarchar(15),
     photo    nvarchar(50),
     status   tinyint default 1,
-    score    int
+    score    int,
+    deleted  tinyint default 0
 );
 
 create table rent_db.rent_tbl
@@ -43,7 +45,8 @@ create table rent_db.rent_tbl
     stuff_status tinyint default 1,
     rent_price   int,
     information  nvarchar(255),
-    FOREIGN KEY(sender_code) REFERENCES user_tbl(code),
-    FOREIGN KEY(renter_code) REFERENCES user_tbl(code),
-    FOREIGN KEY(stuff_code) REFERENCES stuff_tbl(code)
+    deleted      tinyint default 0,
+    FOREIGN KEY (sender_code) REFERENCES user_tbl(code),
+    FOREIGN KEY (renter_code) REFERENCES user_tbl (code),
+    FOREIGN KEY (stuff_code) REFERENCES stuff_tbl (code)
 );

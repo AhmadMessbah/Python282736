@@ -24,4 +24,4 @@ class Rent:
         self._renter != None
 
 
-rent = Rent()
+
