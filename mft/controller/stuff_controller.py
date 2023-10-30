@@ -1,5 +1,7 @@
 import re
 from mft.model.da.stuff_da import *
+from mft.model.entity.stuff import Stuff
+
 
 def valid_code(number):
     return re.match("^\d{1}$",number)
@@ -16,8 +18,10 @@ def valid_price(number):
 
 def save_c(name,brand,description,price,rent_condiotion,rent_price):
     try:
-        if valid_name(name) and valid_name(brand) and valid_name(description) and valid_price(price) and valid_name(rent_condiotion)  and valid_price(rent_price) >= 1000:
-            True,save()
+        # if valid_name(name) and valid_name(brand) and valid_name(description) and valid_price(price) and valid_name(rent_condiotion)  and valid_price(rent_price) >= 1000:
+        stuff = Stuff(None,name,brand,description)
+            da = StuffDa()
+            return True,da.save(stuff)
         else:
             False,"invalid data"
     except Exception as e:
