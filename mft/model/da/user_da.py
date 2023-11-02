@@ -44,6 +44,11 @@ class UserDa:
         [user.name, user.family, user.gender, user.age, user.username, user.password, user.email, user.role, user.state, user.city, user.address, user.phone, user.photo, user.status],
         commit=True)
 
+    def remove_user(self, code):
+        self.execute('update user_tbl set deleted=1 where code=%s',
+                     [code],
+                     commit=True)
+        return code
 
     def activate(self,code):
         self.execute("update user_tbl set status = 1 where code = %s", [code],
