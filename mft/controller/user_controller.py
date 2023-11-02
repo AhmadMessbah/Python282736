@@ -4,18 +4,18 @@ from mft.model.entity.user import User
 
 
 class UserController:
-    def save(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo):
+    def save(self, name, family, gender, age, username, password, email, role, state, city, address, phone, photo):
         try:
-            user = User(None, code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo)
+            user = User(None, name, family, gender, age, username, password, email, role, state, city, address, phone, photo)
             da = UserDa()
             da.save_user(user)
             return True, user
         except Exception as e:
             return False, str(e)
 
-    def edit(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo):
+    def edit(self, name, family, gender, age, username, password, email, role, state, city, address, phone, photo):
         try:
-            user = User(None, code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo)
+            user = User(None, name, family, gender, age, username, password, email, role, state, city, address, phone, photo)
             da = UserDa()
             da.edit_user(user)
             return True, user
@@ -40,13 +40,76 @@ class UserController:
         except Exception as e:
             return False, str(e)
 
+    def find_by_code(self, code):
+        try:
+            da = UserDa()
+            da.find_by_code(code)
+            user = User(code=code)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def find_by_name(self, name):
+        try:
+            da = UserDa()
+            da.find_by_name(name)
+            user = User(name=name)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def find_by_family(self, family):
+        try:
+            da = UserDa()
+            da.find_by_family(family)
+            user = User(family=family)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def find_by_gender(self, gender):
+        try:
+            da = UserDa()
+            da.find_by_gender(gender)
+            user = User(gender=gender)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def find_by_role(self, role):
+        try:
+            da = UserDa()
+            da.find_by_role(role)
+            user = User(role=role)
+            return True, user
+        except Exception as e:
+            return False, str(e)
 
 
+    def find_by_username(self, username):
+        try:
+            da = UserDa()
+            da.find_by_username(username)
+            user = User(username=username)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def find_by_score(self, score):
+        try:
+            da = UserDa()
+            da.find_by_score(score)
+            user = User(score = score)
+            return True, user
+        except Exception as e:
+            return False, str(e)
+
+    def login(self,username,password):
+        pass
 
 
-
-
-
+    def logout(self,username):
+        pass
 
 
 
