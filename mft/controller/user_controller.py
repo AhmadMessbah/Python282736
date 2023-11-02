@@ -68,7 +68,6 @@ def deactivate(code):
     pass
 
 
-
 def find_all():
     try:
         return find_all_user()
@@ -98,23 +97,10 @@ def find_by_username(username,status):
 
 
 def find_by_role(role,status):
-    try:
-        if status == 1:
-            return find_by_role(role, status)
-        else:
-            return False, "Invalid Role"
-    except Exception as e:
-        return False, str(e)
+    pass
 
-def find_by_gender(gender,status):
-    try:
-        if status == 1:
-            return find_by_gender(gender, status)
-        else:
-            return False, "Invalid Gender"
-    except Exception as e:
-        return False, str(e)
-
+def find_by_gender(gender):
+    pass
 
 
 def find_by_score(score,status):
@@ -141,6 +127,5 @@ def login(username, password):
         return False, str(e)
 
 
-def logout():
-    if msg.askyesno("Exit", "Are You Sure ? "):
-        exit()
+def logout(username):
+    pass

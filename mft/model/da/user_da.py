@@ -1,6 +1,4 @@
 import mysql.connector
-import tkinter
-import tkinter.messagebox as msg
 # active --> status=1
 # inactive --> status=0
 
