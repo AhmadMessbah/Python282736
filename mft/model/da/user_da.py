@@ -1,6 +1,12 @@
 import mysql.connector
+from mft.model.entity.user import User
+
+
 # active --> status=1
 # inactive --> status=0
+
+
+
 
 def save_user(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,
               score):
