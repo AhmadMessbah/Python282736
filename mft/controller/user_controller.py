@@ -1,6 +1,6 @@
 import re
 from mft.model.da.user_da import *
-from mft.model.entity.user import User
+from mft.model.entity.user import *
 
 
 class UserController:

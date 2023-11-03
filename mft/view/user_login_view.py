@@ -11,7 +11,7 @@
 from PyQt5.QtCore import*
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+from PyQt5 import QtWidgets
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -130,3 +130,13 @@ class Ui_Form(object):
         self.label_2.setText(QCoreApplication.translate("Form", u"Forgot your User Name or Password ?", None))
     # retranslateUi
 
+
+
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_Form()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
