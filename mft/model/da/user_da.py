@@ -1,133 +1,108 @@
 import mysql.connector
+from mft.model.entity.user import User
 
 
 # active --> status=1
-# deactivate --> status=0
+# inactive --> status=0
 
-def save_user(name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status,
-              score):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute(
+class UserDa:
+    def connect(self):
+        self.connection = mysql.connector.connect(host='localhost', user='root', password='root123', port=3306,
+                                                  database='rent_db')
+        self.cursor = self.connection.cursor()
+
+    def disconnect(self, commit=False):
+        if commit:
+            self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
+
+    def execute(self, sql_command, data=None, commit=False):
+        self.connect()
+        if data:
+            self.cursor.execute(sql_command, data)
+        else:
+            self.cursor.execute(sql_command)
+        result = self.cursor.fetchall()
+        self.disconnect(commit=commit)
+        return result
+
+
+
+
+    def save_user(self,user):
+        self.execute(
         "insert into user_tbl (name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-        [name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status, score])
-    db.commit()
-    cursor.close()
-    db.close()
+        [user.name, user.family, user.gender, user.age, user.username, user.password, user.email, user.role, user.state, user.city, user.address, user.phone, user.photo, user.status, user.score],\
+        commit=True)
 
 
-def edit_user(code, name, family, gender, age, username, password, email, role, state, city, address, phone, photo,
-              status):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute(
+
+    def edit_user(self,user):
+        self.execute(
         "update user_tbl set name=%s,family=%s,gender=%s,age=%s,username=%s,password=%s,email=%s,role=%s,state=%s,city=%s,address=%s,phone=%s,photo=%s,status=%s ",
-        [name, family, gender, age, username, password, email, role, state, city, address, phone, photo, status, code])
-    db.commit()
-    cursor.close()
-    db.close()
+        [user.name, user.family, user.gender, user.age, user.username, user.password, user.email, user.role, user.state, user.city, user.address, user.phone, user.photo, user.status],
+        commit=True)
 
+    def remove_user(self, code):
+        self.execute('update user_tbl set deleted=1 where code=%s',
+                     [code],
+                     commit=True)
+        return code
 
-def activate(code):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("update user_tbl set status = 1 where code = %s", [code])
-    db.commit()
-    cursor.close()
-    db.close()
+    def activate(self,code):
+        self.execute("update user_tbl set status = 1 where code = %s", [code],
+        commit=True)
+        return code
 
 
 # inactive
-def deactivate(code):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("update user_tbl set status = 0 where code = %s", [code])
-    db.commit()
-    cursor.close()
-    db.close()
+    def deactivate(self,code):
+        self.execute("update user_tbl set status = 0 where code = %s", [code],
+        commit=True)
+        return code
 
 
-def find_all_user():
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status = 1")
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
+    def find_all_user(self):
+        return self.execute("select * from user_tbl",commit=True)
 
 
-def find_by_code(code):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and code=%s order by code", [code])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
+    def find_by_code(self,code):
+        return self.execute("select * from user_tbl where code=%s deleted =0", [code],commit=True)
 
 
-def find_by_name_family(name, family):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and name=%s and family=%s order by family", [name, family])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
+
+    def find_by_name(self,name):
+        return self.execute("select * from user_tbl where status=1 and name=%s  order by name",[name],commit=True)
+
+    def find_by_family(self,family):
+        return self.execute("select * from user_tbl where status=1 and family=%s  order by family",[family],commit=True)
+
+    def find_by_username(self,username):
+        return self.execute("select * from user_tbl where status=1 and username=%s order by username",[username],commit=True)
 
 
-def find_by_username_user(username):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and username=%s order by username", [username])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
+
+    def find_by_role(self,role):
+        return self.execute("select * from user_tbl where status=1 and role=%s order by role",[role],commit=True)
 
 
-def find_by_role_user(role):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and role=%s order by role", [role])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
 
 
-def find_by_gender(gender):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and gender=%s order by gender", [gender])
+    def find_by_gender(self,gender):
+        return self.execute("select * from user_tbl where status=1 and gender=%s order by gender",[gender],commit=True)
 
 
-def find_by_score_user(score):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where status=1 and score=%s order by score", [score])
-    user_list = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user_list
+    def find_by_score(self,score):
+        return self.execute("select * from user_tbl where status=1 and score=%s order by score",[score],commit=True)
 
 
-def login_user(username, password):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("select * from user_tbl where username = %s and password = %s and status = 1", [username, password])
-    user = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user
+
+    def login_user(self,username, password):
+        return self.execute("select * from user_tbl where username = %s and password = %s and status = 1", [username, password],commit=True)
 
 
-def logout(username):
-    db = mysql.connector.connect(host="localhost", user="root", database="mft", port=3307)
-    cursor = db.cursor()
-    cursor.execute("update user_tbl set status=0 where username=%s", [username])
-    user = cursor.fetchall()
-    cursor.close()
-    db.close()
-    return user
+
+    def logout(self,username):
+        return self.execute("update user_tbl set status=0 where username=%s",[username],commit=True)
+
