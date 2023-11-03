@@ -8,12 +8,10 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-# sign up view
-
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+from PyQt5 import QtWidgets
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -28,8 +26,7 @@ class Ui_Form(object):
         font.setPointSize(10)
         self.widget.setFont(font)
         self.widget.setStyleSheet(u"background-color: rgba(16, 30, 41, 240);\n"
-"border-radius:10px;\n"
-"")
+        "border-radius:10px;\n""")
         self.lineEdit = QLineEdit(self.widget)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(60, 200, 250, 40))
@@ -39,19 +36,19 @@ class Ui_Form(object):
         font1.setWeight(50)
         self.lineEdit.setFont(font1)
         self.lineEdit.setStyleSheet(u"background-color: rgba(0, 0, 0, 0);\n"
-"border:1px solid rgba(0,0,0,0);\n"
-"border-bottom-color:rgba(46,82,101,255);\n"
-"color:rgb(255,255,255);\n"
-"padding-bottom:7px")
+        "border:1px solid rgba(0,0,0,0);\n"
+        "border-bottom-color:rgba(46,82,101,255);\n"
+        "color:rgb(255,255,255);\n"
+        "padding-bottom:7px")
         self.lineEdit_2 = QLineEdit(self.widget)
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setGeometry(QRect(60, 270, 250, 40))
         self.lineEdit_2.setFont(font1)
         self.lineEdit_2.setStyleSheet(u"background-color: rgba(0, 0, 0, 0);\n"
-"border:1px solid rgba(0,0,0,0);\n"
-"border-bottom-color:rgba(46,82,101,255);\n"
-"color:rgb(255,255,255);\n"
-"padding-bottom:7px")
+        "border:1px solid rgba(0,0,0,0);\n"
+        "border-bottom-color:rgba(46,82,101,255);\n"
+        "color:rgb(255,255,255);\n"
+        "padding-bottom:7px")
         self.lineEdit_2.setEchoMode(QLineEdit.Normal)
         self.pushButton = QPushButton(self.widget)
         self.pushButton.setObjectName(u"pushButton")
@@ -66,19 +63,19 @@ class Ui_Form(object):
         self.pushButton.setAcceptDrops(True)
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setStyleSheet(u"QPushButton#pushButton{\n"
-"background-color: rgb(2, 65, 118);\n"
-"color: rgba(255, 255, 255, 200);\n"
-"border-radius:5px;\n"
-"}\n"
-"QPushButton#pushButton:pressed{\n"
-"padding-left:5px;\n"
-"padding-top:5px;\n"
-"background-color: rgb(2, 65, 100);\n"
-"backgroung-position:calc(100%-10px)center;\n"
-"}\n"
-"QPushButton#pushButton:hover{\n"
-"background-color: rgba(2, 65, 118, 200);\n"
-"}")
+        "background-color: rgb(2, 65, 118);\n"
+        "color: rgba(255, 255, 255, 200);\n"
+        "border-radius:5px;\n"
+        "}\n"
+        "QPushButton#pushButton:pressed{\n"
+        "padding-left:5px;\n"
+        "padding-top:5px;\n"
+        "background-color: rgb(2, 65, 100);\n"
+        "backgroung-position:calc(100%-10px)center;\n"
+        "}\n"
+        "QPushButton#pushButton:hover{\n"
+        "background-color: rgba(2, 65, 118, 200);\n"
+        "}")
         self.pushButton.setCheckable(False)
         self.pushButton.setAutoRepeat(False)
         self.label_3 = QLabel(self.widget)
@@ -237,3 +234,13 @@ class Ui_Form(object):
         self.label.setText(QCoreApplication.translate("Form", u"Already have account?", None))
     # retranslateUi
 
+
+if __name__ == '__main__':
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_Form()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
