@@ -33,7 +33,7 @@ class UserDa:
     def save_user(self,user):
         self.execute(
         "insert into user_tbl (name,family,gender,age,username,password,email,role,state,city,address,phone,photo,status,score) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-        [user.name, user.family, user.gender, user.age, user.username, user.password, user.email, user.role, user.state, user.city, user.address, user.phone, user.photo, user.status, user.score],\
+        [user.name, user.family, user.gender, user.age, user.username, user.password, user.email, user.role, user.state, user.city, user.address, user.phone, user.photo, user.status, user.score],
         commit=True)
 
 
