@@ -1,4 +1,4 @@
-import re
+# import re
 from mft.model.da.user_da import *
 from mft.model.entity.user import *
 
@@ -18,7 +18,7 @@ class UserController:
     def edit(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone,
              photo, status):
         try:
-            user = User(None, name, family, gender, age, username, password, email, role, state, city, address,
+            user = User(code, name, family, gender, age, username, password, email, role, state, city, address,
                         phone, photo, status)
             da = UserDa()
             da.edit_user(user)
@@ -44,71 +44,75 @@ class UserController:
     def find_by_code(self, code):
         try:
             da = UserDa()
-            da.find_by_code(code)
-            user = User(code=code)
-            return True, user
+            return True, da.find_by_code(code)
         except Exception as e:
             return False, str(e)
+
 
     def find_by_name(self, name):
         try:
             da = UserDa()
-            da.find_by_name(name)
-            user = User(name=name)
-            return True, user
+            return True,da.find_by_name(name)
         except Exception as e:
             return False, str(e)
 
-    def find_by_family(self, family):
-        try:
-            da = UserDa()
-            da.find_by_family(family)
-            user = User(family=family)
-            return True, user
-        except Exception as e:
-            return False, str(e)
 
-    def find_by_gender(self, gender):
-        try:
-            da = UserDa()
-            da.find_by_gender(gender)
-            user = User(gender=gender)
-            return True, user
-        except Exception as e:
-            return False, str(e)
+def find_by_family(self, family):
+    try:
+        da = UserDa()
+        da.find_by_family(family)
+        user = User(family=family)
+        return True, user
+    except Exception as e:
+        return False, str(e)
 
-    def find_by_role(self, role):
-        try:
-            da = UserDa()
-            da.find_by_role(role)
-            user = User(role=role)
-            return True, user
-        except Exception as e:
-            return False, str(e)
 
-    def find_by_username(self, username):
-        try:
-            da = UserDa()
-            da.find_by_username(username)
-            user = User(username=username)
-            return True, user
-        except Exception as e:
-            return False, str(e)
+def find_by_gender(self, gender):
+    try:
+        da = UserDa()
+        da.find_by_gender(gender)
+        user = User(gender=gender)
+        return True, user
+    except Exception as e:
+        return False, str(e)
 
-    def find_by_score(self, score):
-        try:
-            da = UserDa()
-            da.find_by_score(score)
-            user = User(score=score)
-            return True, user
-        except Exception as e:
-            return False, str(e)
 
-    def login(self, username, password):
-        pass
+def find_by_role(self, role):
+    try:
+        da = UserDa()
+        da.find_by_role(role)
+        user = User(role=role)
+        return True, user
+    except Exception as e:
+        return False, str(e)
 
-    def logout(self, username):
-        pass
+
+def find_by_username(self, username):
+    try:
+        da = UserDa()
+        da.find_by_username(username)
+        user = User(username=username)
+        return True, user
+    except Exception as e:
+        return False, str(e)
+
+
+def find_by_score(self, score):
+    try:
+        da = UserDa()
+        da.find_by_score(score)
+        user = User(score=score)
+        return True, user
+    except Exception as e:
+        return False, str(e)
+
+
+def login(self, username, password):
+    pass
+
+
+def logout(self, username):
+    pass
 
 # def valid_name(text):
 # return bool(re.match("^[a-zA-Z\s]{2,30}$", text))
