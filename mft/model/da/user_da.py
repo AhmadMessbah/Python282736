@@ -61,35 +61,41 @@ class UserDa:
         return code
 
     def find_all_user(self):
-        return self.execute("select * from user_tbl", commit=True)
+        return self.execute("select * from user_tbl")
 
     def find_by_code(self, code):
-        return self.execute("select * from user_tbl where code=%s deleted =0", [code], commit=True)
+        return self.execute("select * from user_tbl where code=%s deleted =0",
+                            [code]
+                            )
 
     def find_by_name(self, name):
-        return self.execute("select * from user_tbl where status=1 and name=%s  order by name", [name], commit=True)
+        return self.execute("select * from user_tbl where status=1 and name=%s  order by name",
+                            [name] )
 
     def find_by_family(self, family):
-        return self.execute("select * from user_tbl where status=1 and family=%s  order by family", [family],
-                            commit=True)
+        return self.execute("select * from user_tbl where status=1 and family=%s  order by family",
+                            [family])
 
     def find_by_username(self, username):
-        return self.execute("select * from user_tbl where status=1 and username=%s order by username", [username],
-                            commit=True)
+        return self.execute("select * from user_tbl where status=1 and username=%s order by username",
+                            [username])
 
     def find_by_role(self, role):
-        return self.execute("select * from user_tbl where status=1 and role=%s order by role", [role], commit=True)
+        return self.execute("select * from user_tbl where status=1 and role=%s order by role",
+                            [role])
 
     def find_by_gender(self, gender):
-        return self.execute("select * from user_tbl where status=1 and gender=%s order by gender", [gender],
-                            commit=True)
+        return self.execute("select * from user_tbl where status=1 and gender=%s order by gender",
+                            [gender])
 
     def find_by_score(self, score):
-        return self.execute("select * from user_tbl where status=1 and score=%s order by score", [score], commit=True)
+        return self.execute("select * from user_tbl where status=1 and score=%s order by score",
+                            [score])
 
     def login_user(self, username, password):
         return self.execute("select * from user_tbl where username = %s and password = %s and status = 1",
-                            [username, password], commit=True)
+                            [username, password])
 
     def logout(self, username):
-        return self.execute("update user_tbl set status=0 where username=%s", [username], commit=True)
+        return self.execute("update user_tbl set status=0 where username=%s",
+                            [username])
