@@ -93,7 +93,7 @@ class UserDa:
                             [score])
 
     def login_user(self, username, password):
-        return self.execute("select * from user_tbl where username = %s and password = %s and status = 1",
+        return self.execute("update user_tbl set status = 1 where username = %s and password = %s ",
                             [username, password])
 
     def logout(self, username):
