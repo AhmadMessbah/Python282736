@@ -94,8 +94,10 @@ class UserDa:
 
     def login_user(self, username, password):
         return self.execute("update user_tbl set status = 1 where username = %s and password = %s ",
-                            [username, password])
+                            [username, password],
+                            commit=True)
 
     def logout(self, username):
         return self.execute("update user_tbl set status=0 where username=%s",
-                            [username])
+                            [username],
+                            commit=True)
