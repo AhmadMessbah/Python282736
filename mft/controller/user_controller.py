@@ -60,9 +60,7 @@ class UserController:
 def find_by_family(self, family):
     try:
         da = UserDa()
-        da.find_by_family(family)
-        user = User(family=family)
-        return True, user
+        return True, da.find_by_family(family)
     except Exception as e:
         return False, str(e)
 
