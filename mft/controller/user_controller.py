@@ -37,7 +37,7 @@ class UserController:
     def find_all(self):
         try:
             da = UserDa()
-            return True, da.find_all_user()
+            return True, da.find_all()
         except Exception as e:
             return False, str(e)
 
@@ -52,7 +52,11 @@ class UserController:
     def find_by_name(self, name):
         try:
             da = UserDa()
-            return True,da.find_by_name(name)
+            result = da.find_by_name(name)
+            if result:
+                return True,result
+            else:
+                raise ValueError("No Content")
         except Exception as e:
             return False, str(e)
 
