@@ -1,11 +1,13 @@
 import re
 from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 from mft.model.entity.base import Base
 
 
 class User(Base):
     __tablename__ = "user_tbl"
+
     code = Column(Integer, primary_key=True)
     name = Column(String(30))
     family = Column()
@@ -14,8 +16,10 @@ class User(Base):
     username = Column()
     password = Column()
     role = Column()
-    contact = Column()
+    contact_id = Column(Integer, ForeignKey="contact.id")
     status = Column(Boolean)
+
+    contact = relationship("Contact")
 
     def __init__(self, code, name, family, gender, age, username, password, role, contact, status):
         self.code = code

@@ -65,6 +65,7 @@ class DatabaseManager:
 
 
 
+
     def find_by_name(self, class_name, name):
         self.make_engine()
         entity = self.session.get(class_name, name)
