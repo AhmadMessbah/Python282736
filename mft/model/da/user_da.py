@@ -8,7 +8,7 @@ class UserDa(DatabaseManager):
         self.session.close()
         return result
 
-    def find_by_family(self, family):
+    def find_by_family(self, family) :
         self.make_engine()
         result = self.session.query(User.family == family)
         self.session.close()
