@@ -44,7 +44,11 @@ class UserController:
     def find_by_code(self, code):
         try:
             da = UserDa()
-            return True, da.find_by_code(code)
+            result = da.find_by_code(code)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
         except Exception as e:
             return False, str(e)
 
@@ -61,52 +65,64 @@ class UserController:
             return False, str(e)
 
 
-def find_by_family(self, family):
-    try:
-        da = UserDa()
-        return True, da.find_by_family(family)
-    except Exception as e:
-        return False, str(e)
+    def find_by_family(self, family):
+        try:
+            da = UserDa()
+            result = da.find_by_family(family)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
+        except Exception as e:
+            return False, str(e)
 
 
-def find_by_gender(self, gender):
-    try:
-        da = UserDa()
-        da.find_by_gender(gender)
-        user = User(gender=gender)
-        return True, user
-    except Exception as e:
-        return False, str(e)
+    def find_by_gender(self, gender):
+        try:
+            da = UserDa()
+            result = da.find_by_gender(gender)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
+        except Exception as e:
+            return False, str(e)
 
 
-def find_by_role(self, role):
-    try:
-        da = UserDa()
-        da.find_by_role(role)
-        user = User(role=role)
-        return True, user
-    except Exception as e:
-        return False, str(e)
+    def find_by_role(self, role):
+        try:
+            da = UserDa()
+            result = da.find_by_role(role)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
+        except Exception as e:
+            return False, str(e)
 
 
-def find_by_username(self, username):
-    try:
-        da = UserDa()
-        da.find_by_username(username)
-        user = User(username=username)
-        return True, user
-    except Exception as e:
-        return False, str(e)
+    def find_by_username(self, username):
+        try:
+            da = UserDa()
+            result = da.find_by_username(username)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
+        except Exception as e:
+            return False, str(e)
 
 
-def find_by_score(self, score):
-    try:
-        da = UserDa()
-        da.find_by_score(score)
-        user = User(score=score)
-        return True, user
-    except Exception as e:
-        return False, str(e)
+    def find_by_score(self, score):
+        try:
+            da = UserDa()
+            result = da.find_by_score(score)
+            if result:
+                return True, result
+            else:
+                raise ValueError("No Content")
+        except Exception as e:
+            return False, str(e)
 
 
 def login(self, username, password):
