@@ -9,9 +9,9 @@ class Rent(Base):
     __tablename__ = "rent_tbl"
 
     code = Column(Integer, primary_key=True)
-    sender_id = Column(Integer, ForeignKey="User.code")
-    renter_id = Column(Integer, ForeignKey="User.code")
-    stuff_id = Column(Integer,ForeignKey="Stuff.id")
+    sender_code = Column(Integer, ForeignKey="sender.code")
+    renter_code = Column(Integer, ForeignKey="renter.code")
+    stuff_code = Column(Integer,ForeignKey="Stuff.code")
     rent_date = Column(DateTime)
     return_date = Column(DateTime)
     stuff_status = Column(String(255))
