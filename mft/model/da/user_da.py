@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+#<<<<<<< HEAD
 import mysql.connector
-=======
+#=======
 # import mysql.connector
 # from mft.model.entity.user import User
 #
@@ -186,7 +186,7 @@ import mysql.connector
 
 
 
->>>>>>> origin/projects
+#>>>>>>> origin/projects
 
 from mft.model.da.database import DatabaseManager
 from mft.model.entity.user import User
@@ -202,7 +202,7 @@ class CustomerDa(DatabaseManager):
             case "end":
                 name = "%" + name
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 class UserDa(DatabaseManager):
 
     def find_by_name(self, name):
@@ -244,7 +244,7 @@ class UserDa(DatabaseManager):
     #     return self.execute("update user_tbl set status=0 where username=%s",
     #                         [username],
     #                         commit=True)
-=======
+#=======
         self.make_engine()
         return self.session.query(User).filter(User.name.like(name))
     def find_by_family(self, family,search_type = None ):
@@ -259,5 +259,5 @@ class UserDa(DatabaseManager):
 
 
 
->>>>>>> origin/projects
+#>>>>>>># origin/projects
 
