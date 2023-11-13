@@ -18,9 +18,9 @@ from sqlalchemy_utils import database_exists, create_database
 
 class DatabaseManager:
     def make_engine(self):
-        if not database_exists('mysql+pymysql://root:root123@localhost:3306/mft'):
-            create_database('mysql+pymysql://root:root123@localhost:3306/mft')
-        self.engine = create_engine('mysql+pymysql://root:root123@localhost:3306/mft')
+        if not database_exists('mysql+pymysql://root:root123@localhost:3306/rent_db'):
+            create_database('mysql+pymysql://root:root123@localhost:3306/rent_db')
+        self.engine = create_engine('mysql+pymysql://root:root123@localhost:3306/rent_db')
 
         # Create Tables
         Base.metadata.create_all(self.engine)
