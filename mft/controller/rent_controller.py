@@ -88,7 +88,7 @@ class RentController:
     def find_by_return_date_range(start_date, end_date):
         try:
             if start_date and end_date > 0:
-                return True, start_date(), end_date()
+                return True, start_date() , end_date()
             else:
                 return False, "invalid Date"
         except Exception as e :
@@ -110,12 +110,20 @@ class RentController:
     def find_by_information(information):
         try :
             if valid_name(information):
-                True , find_by_information()
+               return True , find_by_information()
             else:
-                False, 'invalid information'
+                return False, 'invalid information'
         except Exception as e:
             False , str(e)
 
-
+    def valid_status(text):
+        return re.match('^[a-zA-Z\s]{500}$',text)
     def find_by_rent_status(rent_status):
-        pass
+        try:
+            if valid_status(rent_status):
+                return True , find_by_rent_status()
+            else:
+                return False, "Invalid Status"
+        except Exception as e:
+            False , str(e)
+
