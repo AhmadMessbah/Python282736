@@ -1,7 +1,22 @@
 import re
+from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+
+from mft.model.entity.base import Base
 
 
-class User:
+class User(Base):
+    __tablename__ = "user_tbl"
+    code = Column(Integer, primary_key=True)
+    name = Column(String(30))
+    family = Column()
+    gender = Column()
+    age = Column()
+    username = Column()
+    password = Column()
+    role = Column()
+    contact = Column()
+    status = Column(Boolean)
+
     def __init__(self, code, name, family, gender, age, username, password, role, contact, status):
         self.code = code
         self.name = name
@@ -46,7 +61,7 @@ class User:
 
     @gender.setter
     def gender(self, gender):
-        if isinstance(gender, str) and gender in ("Male","Female"):
+        if isinstance(gender, str) and gender in ("Male", "Female"):
             self._gender = gender
         else:
             raise ValueError("Invalid gender")
@@ -109,3 +124,4 @@ class User:
             self._status = status
         else:
             raise ValueError("Invalid status")
+

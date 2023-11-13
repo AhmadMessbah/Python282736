@@ -1,7 +1,19 @@
 import re
+from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+
+from mft.model.entity.base import Base
 
 
-class UserContact:
+class UserContact(Base):
+    __tablename__ = "user_contact_tbl"
+    code = Column(Integer, primary_key=True)
+    email = Column(String(30))
+    state = Column(String(30))
+    city = Column(String(30))
+    address = Column(String(30))
+    phone = Column(String(30))
+    photo = Column(String(30))
+
     def __init__(self, code, email, state, city, address, phone, photo):
         self.code = code
         self.email = email
@@ -79,3 +91,4 @@ class UserContact:
             self._photo = photo
         else:
             raise ValueError("Invalid photo")
+
