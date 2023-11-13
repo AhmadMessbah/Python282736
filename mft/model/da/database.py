@@ -49,6 +49,7 @@ class DatabaseManager:
         self.session.close()
         return entity
 
+
     def find_all(self, class_name):
         self.make_engine()
         entity_list = self.session.query(class_name).all()
@@ -63,4 +64,45 @@ class DatabaseManager:
         return entity
 
 
+
+    def find_by_name(self, class_name, name):
+        self.make_engine()
+        entity = self.session.get(class_name, name)
+        self.session.close()
+        return entity
+
+
+    def find_by_family(self, class_name, family):
+        self.make_engine()
+        entity = self.session.get(class_name, family)
+        self.session.close()
+        return entity
+
+
+    def find_by_score(self, class_name, score):
+        self.make_engine()
+        entity = self.session.get(class_name, score)
+        self.session.close()
+        return entity
+
+
+    def find_by_username(self, class_name, username):
+        self.make_engine()
+        entity = self.session.get(class_name, username)
+        self.session.close()
+        return entity
+
+
+    def find_by_role(self, class_name, role):
+        self.make_engine()
+        entity = self.session.get(class_name, role)
+        self.session.close()
+        return entity
+
+
+    def find_by_gender(self, class_name, gender):
+        self.make_engine()
+        entity = self.session.get(class_name, gender)
+        self.session.close()
+        return entity
 
