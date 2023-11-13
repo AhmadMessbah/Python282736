@@ -4,7 +4,7 @@ from mft.model.entity.user import *
 
 
 class UserController:
-    def save(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone,
+    def save(self, name, family, gender, age, username, password, email, role, state, city, address, phone,
              photo, status):
         try:
             user = User(None, name, family, gender, age, username, password, email, role, state, city, address,
