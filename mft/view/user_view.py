@@ -234,7 +234,6 @@ class Ui_Form(object):
         self.label.setText(QCoreApplication.translate("Form", u"Already have account?", None))
     # retranslateUi
 
-
 if __name__ == '__main__':
     import sys
 
