@@ -1,8 +1,27 @@
 import re
+from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+from sqlalchemy.orm import relationship
+
+from mft.model.entity.base import Base
 
 
-class User:
-    def __init__(self, code, name, family, gender, age, username, password, role, status):
+class User(Base):
+    __tablename__ = "user_tbl"
+
+    code = Column(Integer, primary_key=True)
+    name = Column(String(30))
+    family = Column()
+    gender = Column()
+    age = Column()
+    username = Column()
+    password = Column()
+    role = Column()
+    contact_id = Column(Integer, ForeignKey="contact.id")
+    status = Column(Boolean)
+
+    contact = relationship("Contact")
+
+    def __init__(self, code, name, family, gender, age, username, password, role, contact, status):
         self.code = code
         self.name = name
         self.family = family
@@ -11,6 +30,7 @@ class User:
         self.username = username
         self.password = password
         self.role = role
+        self.contact = contact
         self.status = status
 
     def __repr__(self):
@@ -34,7 +54,7 @@ class User:
 
     @family.setter
     def family(self, family):
-        if isinstance(family, str) and re.match("^[a-zA-Z\s]{2,30}$", family):
+        if isinstance(family, str) and re.match("[a-zA-Z\s]{2,30}", family):
             self._family = family
         else:
             raise ValueError("Invalid family")
@@ -56,7 +76,7 @@ class User:
 
     @age.setter
     def age(self, age):
-        if re.match("^[\d]{1,3}$", age):
+        if isinstance(age, str) and re.match("^[\d]+$", age):
             self._age = age
         else:
             raise ValueError("Invalid age")
@@ -89,10 +109,14 @@ class User:
 
     @role.setter
     def role(self, role):
-        if isinstance(role, str) and role in ("renter", "sender", role):
+        if isinstance(role, str):
             self._role = role
         else:
             raise ValueError("Invalid role")
+
+    @property
+    def state(self):
+        return self._state
 
     @property
     def status(self):
@@ -100,7 +124,8 @@ class User:
 
     @status.setter
     def status(self, status):
-        if isinstance(status, int) and status in (0, 2):
+        if isinstance(status, str):
             self._status = status
         else:
             raise ValueError("Invalid status")
+

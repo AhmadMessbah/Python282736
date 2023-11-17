@@ -1,8 +1,20 @@
 import re
+from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+
+from mft.model.entity.base import Base
 
 
-class UserContact:
-    def __init__(self, code, email, state, city, address, phone, photo, status):
+class UserContact(Base):
+    __tablename__ = "user_contact_tbl"
+    code = Column(Integer, primary_key=True)
+    email = Column(String(30))
+    state = Column(String(30))
+    city = Column(String(30))
+    address = Column(String(30))
+    phone = Column(String(30))
+    photo = Column(String(30))
+
+    def __init__(self, code, email, state, city, address, phone, photo):
         self.code = code
         self.email = email
         self.state = state
@@ -10,7 +22,6 @@ class UserContact:
         self.address = address
         self.phone = phone
         self.photo = photo
-        self.status = status
 
     def __repr__(self):
         return str(self.__dict__)
@@ -65,31 +76,19 @@ class UserContact:
 
     @phone.setter
     def phone(self, phone):
-        if isinstance(phone, str) and re.match(re.match("^09[\d]{9}$"), phone):
+        if isinstance(phone, str) and re.match(re.match("^09\d{9}$"), phone):
             self._phone = phone
         else:
             raise ValueError("Invalid phone")
-
-    @property
-    def status(self):
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        if isinstance(status, str):
-            self._status = status
-        else:
-            raise ValueError("Invalid status")
 
     @property
     def photo(self):
         return self._photo
 
     @photo.setter
-    def phone(self, photo):
+    def photo(self, photo):
         if isinstance(photo, int):
-            self._phone = photo
+            self._photo = photo
         else:
             raise ValueError("Invalid photo")
 
-# print("R-WIN,PARNIA,AMIR,MOHAMMAD,GHAZAL,AMIRHOSSIEN")
