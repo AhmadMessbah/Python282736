@@ -7,12 +7,12 @@ from mft.model.entity.base import Base
 class UserContact(Base):
     __tablename__ = "user_contact_tbl"
     code = Column(Integer, primary_key=True)
-    email = Column(String(30))
-    state = Column(String(30))
-    city = Column(String(30))
-    address = Column(String(30))
-    phone = Column(String(30))
-    photo = Column(String(30))
+    email = Column(String(30), nullable=False)
+    state = Column(String(30), nullable=False)
+    city = Column(String(30), nullable=False)
+    address = Column(String(30), nullable=False)
+    phone = Column(String(30), nullable=False)
+    photo = Column(String(30), nullable=True)
 
     def __init__(self, code, email, state, city, address, phone, photo):
         self.code = code
@@ -91,4 +91,3 @@ class UserContact(Base):
             self._photo = photo
         else:
             raise ValueError("Invalid photo")
-
