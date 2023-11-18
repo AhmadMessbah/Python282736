@@ -44,22 +44,17 @@ class DatabaseManager:
         self.session.close()
         return entity
 
-
     def find_all(self, class_name):
         self.make_engine()
         entity_list = self.session.query(class_name).all()
         self.session.close()
         return entity_list
 
-
-    def find_by_id(self, class_name, id):
+    def find_by_code(self, class_name, code):
         self.make_engine()
-        entity = self.session.get(class_name, id)
+        entity = self.session.get(class_name, code)
         self.session.close()
         return entity
-
-
-
 
     def find_by_name(self, class_name, name):
         self.make_engine()
@@ -67,13 +62,11 @@ class DatabaseManager:
         self.session.close()
         return entity
 
-
     def find_by_family(self, class_name, family):
         self.make_engine()
         entity = self.session.get(class_name, family)
         self.session.close()
         return entity
-
 
     def find_by_score(self, class_name, score):
         self.make_engine()
@@ -81,13 +74,11 @@ class DatabaseManager:
         self.session.close()
         return entity
 
-
     def find_by_username(self, class_name, username):
         self.make_engine()
         entity = self.session.get(class_name, username)
         self.session.close()
         return entity
-
 
     def find_by_role(self, class_name, role):
         self.make_engine()
@@ -95,10 +86,20 @@ class DatabaseManager:
         self.session.close()
         return entity
 
-
     def find_by_gender(self, class_name, gender):
         self.make_engine()
         entity = self.session.get(class_name, gender)
         self.session.close()
         return entity
-
+    def find_by_age(self,class_name,age):
+        pass
+    def find_by_status(self,class_name,status):
+        pass
+    def find_by_email(self,class_name,email):
+        pass
+    def find_by_state(self,class_name,state):
+        pass
+    def find_by_city(self,class_name,city):
+        pass
+    def find_by_phone(self,class_name,phone):
+        pass
