@@ -52,18 +52,16 @@ class UserController:
         except Exception as e:
             return False, str(e)
 
-
     def find_by_name(self, name):
         try:
             da = UserDa()
             result = da.find_by_name(name)
             if result:
-                return True,result
+                return True, result
             else:
                 raise ValueError("No Content")
         except Exception as e:
             return False, str(e)
-
 
     def find_by_family(self, family):
         try:
@@ -76,7 +74,6 @@ class UserController:
         except Exception as e:
             return False, str(e)
 
-
     def find_by_gender(self, gender):
         try:
             da = UserDa()
@@ -87,7 +84,6 @@ class UserController:
                 raise ValueError("No Content")
         except Exception as e:
             return False, str(e)
-
 
     def find_by_role(self, role):
         try:
@@ -100,7 +96,6 @@ class UserController:
         except Exception as e:
             return False, str(e)
 
-
     def find_by_username(self, username):
         try:
             da = UserDa()
@@ -111,7 +106,6 @@ class UserController:
                 raise ValueError("No Content")
         except Exception as e:
             return False, str(e)
-
 
     def find_by_score(self, score):
         try:
