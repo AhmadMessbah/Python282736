@@ -1,28 +1,32 @@
 import mysql.connector
 from mft.model.da.database import DatabaseManager
 from mft.model.entity.user import User
+from sqlalchemy import *
+from mft.model.entity.user_contact import *
+
 class UserDa(DatabaseManager):
     def find_by_name(self, name):
         self.make_engine()
-        result = self.session.query(User.name == name)
+        result = self.session.query(User).filter(User.name == name)
         self.session.close()
         return result
 
+
     def find_by_family(self, family):
         self.make_engine()
-        result = self.session.query(User.family == family)
+        result = self.session.query(User).filter(User.family== family)
         self.session.close()
         return result
 
     def find_by_gender(self, gender):
         self.make_engine()
-        result = self.session.query(User.gender == gender)
+        result = self.session.query(User).filter(User.gender == gender)
         self.session.close()
         return result
 
     def find_by_age(self, age):
         self.make_engine()
-        result = self.session.query(User.age == age)
+        result = self.session.query(User).filter(User.age == age)
         self.session.close()
         return result
 
@@ -30,74 +34,74 @@ class UserDa(DatabaseManager):
 
     def find_by_username(self, username):
         self.make_engine()
-        result = self.session.query(User.username == username)
+        result = self.session.query(User).filter(User.username == username)
         self.session.close()
         return result
 
     def find_by_password(self, password):
         self.make_engine()
-        result = self.session.query(User.password == password)
+        result = self.session.query(User).filter(User.password == password)
         self.session.close()
         return result
 
 
     def find_by_email(self, email):
         self.make_engine()
-        result = self.session.query(User.email == email)
+        result = self.session.query(User).filter(User.email == email)
         self.session.close()
         return result
 
 
     def find_by_role(self, role):
         self.make_engine()
-        result = self.session.query(User.role == role)
+        result = self.session.query(User).filter(User.role == role)
         self.session.close()
         return result
 
     def find_by_state(self, state):
         self.make_engine()
-        result = self.session.query(User.state == state)
+        result = self.session.query(User).filter(User.state == state)
         self.session.close()
         return result
 
 
     def find_by_city(self, city):
         self.make_engine()
-        result = self.session.query(User.city == city)
+        result = self.session.query(User).filter(User.city == city)
         self.session.close()
         return result
 
 
     def find_by_address(self, address):
         self.make_engine()
-        result = self.session.query(User.address == address)
+        result = self.session.query(User).filter(User.address == address)
         self.session.close()
         return result
 
 
     def find_by_phone(self, phone):
         self.make_engine()
-        result = self.session.query(User.phone == phone)
+        result = self.session.query(User).filter(User.phone == phone)
         self.session.close()
         return result
 
 
     def find_by_photo(self, photo):
         self.make_engine()
-        result = self.session.query(User.photo == photo)
+        result = self.session.query(User).filter(User.photo == photo)
         self.session.close()
         return result
 
 
     def find_by_status(self, status):
         self.make_engine()
-        result = self.session.query(User.status == status)
+        result = self.session.query(User).filter(User.status == status)
         self.session.close()
         return result
 
 
     def find_by_score(self, score):
         self.make_engine()
-        result = self.session.query(User.score == score)
+        result = self.session.query(User).filter(User.score == score)
         self.session.close()
         return result

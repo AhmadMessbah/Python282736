@@ -20,8 +20,8 @@ class DatabaseManager:
         # Create Tables
         Base.metadata.create_all(self.engine)
 
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+        session = sessionmaker(bind=self.engine)
+        self.session = session()
 
     def save(self, entity):
         self.make_engine()
@@ -91,15 +91,38 @@ class DatabaseManager:
         entity = self.session.get(class_name, gender)
         self.session.close()
         return entity
-    def find_by_age(self,class_name,age):
-        pass
-    def find_by_status(self,class_name,status):
-        pass
-    def find_by_email(self,class_name,email):
-        pass
-    def find_by_state(self,class_name,state):
-        pass
-    def find_by_city(self,class_name,city):
-        pass
-    def find_by_phone(self,class_name,phone):
-        pass
+
+    def find_by_age(self, class_name, age):
+        self.make_engine()
+        entity = self.session.get(class_name, age)
+        self.session.close()
+        return entity
+
+    def find_by_status(self, class_name, status):
+        self.make_engine()
+        entity = self.session.get(class_name, status)
+        self.session.close()
+        return entity
+
+    def find_by_email(self, class_name, email):
+        self.make_engine()
+        entity = self.session.get(class_name, email)
+        self.session.close()
+        return entity
+
+    def find_by_state(self, class_name, state):
+        self.make_engine()
+        entity = self.session.get(class_name, state)
+        self.session.close()
+        return entity
+    def find_by_city(self, class_name, city):
+        self.make_engine()
+        entity = self.session.get(class_name, city)
+        self.session.close()
+        return entity
+
+    def find_by_phone(self, class_name, phone):
+        self.make_engine()
+        entity = self.session.get(class_name, phone)
+        self.session.close()
+        return entity

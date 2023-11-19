@@ -10,12 +10,12 @@ class User(Base):
 
     code = Column(Integer, primary_key=True)
     name = Column(String(30))
-    family = Column()
-    gender = Column()
-    age = Column()
-    username = Column()
-    password = Column()
-    role = Column()
+    family = Column(String(30))
+    gender = Column(Boolean)
+    age = Column(Integer)
+    username = Column(String(30))
+    password = Column(String(30))
+    role = Column(Boolean)
     contact_id = Column(Integer, ForeignKey="contact.id")
     status = Column(Boolean)
 
