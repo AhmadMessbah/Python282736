@@ -30,7 +30,7 @@ class UserDa(DatabaseManager):
         match search_type:
             case "man":
                 return self.session.query(User).filter(User.gender == "man")
-            case  "woman":
+            case "woman":
                 return self.session.query(User).filter(User.gender == "woman")
 
     def find_by_age(self, age, search_type=None):
