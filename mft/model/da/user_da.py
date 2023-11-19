@@ -56,7 +56,7 @@ class UserDa(DatabaseManager):
 
     def find_by_status(self, status, search_type=None):
         match search_type:
-            case "":
+            case "inactive":
                 return self.session.query(User).filter(User.status == 1)
-            case "":
+            case "active":
                 return self.session.query(User).filter(User.status == 0)
