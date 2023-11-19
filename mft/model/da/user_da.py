@@ -33,30 +33,17 @@ class UserDa(DatabaseManager):
         pass
 
     def find_by_username(self, username, search_type=None):
-        pass
-
-    def find_by_password(self, password, search_type=None):
-        pass
-
-    def find_by_email(self, email, search_type=None):
-        pass
+        match search_type:
+            case "contain":
+                username = "%" + username + "%"
+            case "start":
+                username = username + "%"
+            case "end":
+                username = "%" + username
+        self.make_engine()
+        return self.session.query(User).filter(User.username.like(username))
 
     def find_by_role(self, role, search_type=None):
-        pass
-
-    def find_by_state(self, state, search_type=None):
-        pass
-
-    def find_by_city(self, city, search_type=None):
-        pass
-
-    def find_by_address(self, address, search_type=None):
-        pass
-
-    def find_by_phone(self, phone, search_type=None):
-        pass
-
-    def find_by_photo(self, photo, search_type=None):
         pass
 
     def find_by_status(self, status, search_type=None):

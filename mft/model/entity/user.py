@@ -33,6 +33,7 @@ class User(Base):
         self.contact = contact
         self.status = status
 
+
     def __repr__(self):
         return str(self.__dict__)
 
