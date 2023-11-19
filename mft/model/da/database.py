@@ -8,6 +8,7 @@ from mft.model.entity.base import Base
 
 from sqlalchemy.orm import sessionmaker
 
+import sqlalchemy_utils
 from sqlalchemy_utils import database_exists, create_database
 
 
@@ -20,12 +21,12 @@ class DatabaseManager:
         # Create Tables
         Base.metadata.create_all(self.engine)
 
-        session = sessionmaker(bind=self.engine)
-        self.session = session()
+        Session = sessionmaker(bind=self.engine)
+        self.session = Session()
 
     def save(self, entity):
         self.make_engine()
-        entity = self.session.add(entity)
+        entity = self.session.add()
         self.session.commit()
         self.session.close()
         return entity
@@ -94,19 +95,19 @@ class DatabaseManager:
 
     def find_by_age(self, class_name, age):
         self.make_engine()
-        entity = self.session.get(class_name, age)
+        entity = self.session.get(class_name,age)
         self.session.close()
         return entity
 
     def find_by_status(self, class_name, status):
         self.make_engine()
-        entity = self.session.get(class_name, status)
+        entity = self.session.get(class_name,status)
         self.session.close()
         return entity
 
     def find_by_email(self, class_name, email):
         self.make_engine()
-        entity = self.session.get(class_name, email)
+        entity = self.session.get(class_name,email)
         self.session.close()
         return entity
 
@@ -115,6 +116,7 @@ class DatabaseManager:
         entity = self.session.get(class_name, state)
         self.session.close()
         return entity
+
     def find_by_city(self, class_name, city):
         self.make_engine()
         entity = self.session.get(class_name, city)
