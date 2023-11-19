@@ -49,5 +49,4 @@ class UserDa(DatabaseManager):
     def find_by_status(self, status, search_type=None):
         pass
 
-    def find_by_score(self, score, search_type=None):
-        pass
+
