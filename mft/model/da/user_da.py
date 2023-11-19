@@ -28,10 +28,10 @@ class UserDa(DatabaseManager):
 
     def find_by_gender(self, gender, search_type=None):
         match search_type:
-            case "Man":
-                return self.session.query(User).filter(User.gender == "Man")
-            case  "Woman":
-                return self.session.query(User).filter(User.gender == "Woman")
+            case "man":
+                return self.session.query(User).filter(User.gender == "man")
+            case  "woman":
+                return self.session.query(User).filter(User.gender == "woman")
 
     def find_by_age(self, age, search_type=None):
         pass
@@ -48,7 +48,15 @@ class UserDa(DatabaseManager):
         return self.session.query(User).filter(User.username.like(username))
 
     def find_by_role(self, role, search_type=None):
-        pass
+        match search_type:
+            case "renter":
+                return self.session.query(User).filter(User.role == "renter")
+            case "sender":
+                return self.session.query(User).filter(User.role == "sender")
 
     def find_by_status(self, status, search_type=None):
-        pass
+        match search_type:
+            case "":
+                return self.session.query(User).filter(User.status == 1)
+            case "":
+                return self.session.query(User).filter(User.status == 0)
