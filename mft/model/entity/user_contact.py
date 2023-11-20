@@ -1,5 +1,6 @@
 import re
-from sqlalchemy import Column, Integer, Boolean, String, ForeignKey
+
+from sqlalchemy import Column, Integer, String
 
 from mft.model.entity.base import Base
 
@@ -76,7 +77,7 @@ class UserContact(Base):
 
     @phone.setter
     def phone(self, phone):
-        if isinstance(phone, str) and re.match(re.match("^09\d{9}$"), phone):
+        if isinstance(phone, str) and re.match(("^09\d{9}$"), phone):
             self._phone = phone
         else:
             raise ValueError("Invalid phone")
