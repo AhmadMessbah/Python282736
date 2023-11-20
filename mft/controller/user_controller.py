@@ -1,13 +1,14 @@
-#import re
+# import re
 from mft.model.da.user_da import *
 from mft.model.entity.user import *
 
 
 class UserController:
-    def save(self, name, family, gender, age, username, password,  role
-             , status):
+    def save(self, name, family, gender, age, username, password, email, role, state, city, address, phone,
+             photo, status):
         try:
-            user = User(None, name, family, gender, age, username, password,role,  status)
+            user = User(None, name, family, gender, age, username, password, email, role, state, city, address,
+                        phone, photo, status)
             da = UserDa()
             da.save(user)
             return True, user
@@ -17,9 +18,10 @@ class UserController:
     def edit(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone,
              photo, status):
         try:
-            user = User(code, name, family, gender, age, username, password,role, status)
+            user = User(code, name, family, gender, age, username, password, email, role, state, city, address,
+                        phone, photo, status)
             da = UserDa()
-            da.edit (user)
+            da.edit(user)
             return True, user
         except Exception as e:
             return False, str(e)
@@ -35,7 +37,7 @@ class UserController:
     def find_all(self):
         try:
             da = UserDa()
-            return True, da.find_all(User)
+            return True, da.find_all()
         except Exception as e:
             return False, str(e)
 
