@@ -13,7 +13,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets
 
-from mft.controller.user_controller import UserController
+from mft.controller.user_contact_controller import UserController
 from mft.model.entity.user import User
 
 

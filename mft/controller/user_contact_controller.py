@@ -4,22 +4,18 @@ from mft.model.entity.user import *
 
 
 class UserController:
-    def save(self, name, family, gender, age, username, password, email, role, state, city, address, phone,
-             photo, status):
+    def save(self, name, family, gender, age, username, password, email, role, state):
         try:
-            user = User(None, name, family, gender, age, username, password, email, role, state, city, address,
-                        phone, photo, status)
+            user = User(None, name, family, gender, age, username, password, email, role, state)
             da = UserDa()
             da.save(user)
             return True, user
         except Exception as e:
             return False, str(e)
 
-    def edit(self, code, name, family, gender, age, username, password, email, role, state, city, address, phone,
-             photo, status):
+    def edit(self, code, name, family, gender, age, username, password, email, role, state):
         try:
-            user = User(code, name, family, gender, age, username, password, email, role, state, city, address,
-                        phone, photo, status)
+            user = User(code, name, family, gender, age, username, password, email, role, state)
             da = UserDa()
             da.edit(user)
             return True, user
