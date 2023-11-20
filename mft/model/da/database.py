@@ -26,7 +26,7 @@ class DatabaseManager:
 
     def save(self, entity):
         self.make_engine()
-        entity = self.session.add()
+        entity = self.session.add(entity)
         self.session.commit()
         self.session.close()
         return entity

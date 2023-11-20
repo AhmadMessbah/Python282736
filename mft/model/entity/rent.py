@@ -22,8 +22,7 @@ class Rent(Base):
     stuff = relationship("Stuff")
 
 
-    def __init__(self, code, sender, renter, stuff, rent_date, return_date, stuff_status, rent_price, information):
-        self.code = code
+    def __init__(self,  sender, renter, stuff, rent_date, return_date, stuff_status, rent_price, information):
         self.sender = sender
         self.renter = renter
         self.stuff = stuff

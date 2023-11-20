@@ -34,7 +34,7 @@ class StuffController:
     def find_all(self):
         try:
             da = StuffDa()
-            return True, da.find_all()
+            return True, da.find_all(Stuff)
         except Exception as e:
             return False, str(e)
 
